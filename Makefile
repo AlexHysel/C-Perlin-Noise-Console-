@@ -3,12 +3,12 @@ LIBC = ar -rcs
 CC = cc
 RM = rm -f
 
-FILES = hpn.c hpn_math.c
+FILES = hpn.c hpn_math.c hpn_display.c
 
 OBJS = $(FILES:.c=.o)
 
 %.o: %.c
-	$(CC) -c $< -o $@ -lm
+	$(CC) -c $< -o $@
 
 all: ${NAME}
 

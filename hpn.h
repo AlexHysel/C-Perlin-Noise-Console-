@@ -28,5 +28,6 @@ short	random_angle();
 float	cos_similarity(short angle1, short angle2);
 
 //display
+void	display_grid(short **grid);
 
 #endif

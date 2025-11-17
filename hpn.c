@@ -1,5 +1,12 @@
 #include "hpn.h"
 
+static float	angle_in_cell(float x, float y)
+{
+	x = x - (int) x;
+	y = y - (int) y;
+	return ((float) atan2(y, x) / M_PI * 180);
+}
+
 float	perlin_noise(float x, float y, short **grid)
 {
 	if (x < 0)
@@ -8,10 +15,11 @@ float	perlin_noise(float x, float y, short **grid)
 		y * -1;
 
 	t_cell	*cell;
+	float	angle;
+
 	cell = find_cell(x, y, grid);
-	x = x - (int) x;
-	y = y - (int) y;
-	float angle = (float) atan2(y, x) / M_PI * 180;
+	angle = angle_in_cell(x, y);
+
 	return (angle);
 }
 
@@ -22,11 +30,11 @@ short	**create_grid(unsigned int width, unsigned int height)
 
 	if (!width || !height)
 		return (NULL);
-	grid = malloc(width * sizeof(short *) + 1);
+	grid = malloc(width * sizeof(short *) + width);
 	grid[width] = 0;
 	while(width-- > 0)
 	{
-		grid[width] = malloc(height * sizeof(short));
+		grid[width] = malloc(height * sizeof(short) + height);
 		grid[width][height] = 0;
 		h = height;
 		while (h-- > 0)
