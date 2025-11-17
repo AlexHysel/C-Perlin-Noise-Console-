@@ -24,4 +24,7 @@ int	main(int argc, char *args[])
 			printf("%4d ", grid[w2][h]);
 		printf("\n");
 	}
+	t_cell	*cell = find_cell(2.2, 1.4, grid);
+	printf("\n %4d %4d \n %4d %4d", cell->ul, cell->ur, cell->bl, cell->br);
+	printf("\n%f", perlin_noise(2.5, 1.5, grid));
 }

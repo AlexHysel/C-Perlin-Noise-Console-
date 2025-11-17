@@ -10,8 +10,18 @@
 # include <math.h>
 
 //perlin noise
-float	perlin_noise(float x, float y);
+
+typedef struct s_cell
+{
+	short	ur;
+	short	ul;
+	short	br;
+	short	bl;
+}	t_cell;
+
+float	perlin_noise(float x, float y, short **grid);
 short	**create_grid(unsigned int width, unsigned int height);
+t_cell	*find_cell(float x, float y, short **grid);
 
 //math functions
 short	random_angle();
