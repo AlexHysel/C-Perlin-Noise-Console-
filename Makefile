@@ -3,7 +3,7 @@ LIBC = ar -rcs
 CC = cc
 RM = rm -f
 
-FILES = hpn.c hpn_math.c hpn_display.c
+FILES = hpn.c hpn_math.c hpn_display.c hpn_grid.c
 
 OBJS = $(FILES:.c=.o)
 
