@@ -1,5 +1,11 @@
 #include "hpn.h"
 
+//Returns random angle (0 - 359)
+static short	random_angle()
+{
+	return (rand() % 360);
+}
+
 //Creates grid with random angles
 short	**create_grid(unsigned int width, unsigned int height)
 {
@@ -33,6 +39,7 @@ t_cell	*get_cell(int x, int y, short **grid)
 	return (cell);
 }
 
+//Increments every angle in grid to move the noise
 void	increment_grid_angles(short **grid, short value)
 {
 	for (int y = 0; grid[y]; y++)

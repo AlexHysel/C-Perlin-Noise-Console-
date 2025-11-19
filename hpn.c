@@ -1,15 +1,11 @@
 #include "hpn.h"
 #include <stdio.h>
 
-
-static float	quintic_curve(float value)
+static float	increase_contract(float noise)
 {
-	return (6 * pow(value, 5) - 15 * pow(value, 4) + 10 * pow(value, 3));
-}
-
-static float	perlin_curve(float value)
-{
-	return (3 * pow(value, 2) - 2 * pow(value, 3));
+	if (noise < 0.0)
+		return (-powf(-noise, 0.75));
+	return (powf(noise, 0.75));
 }
 
 static float	interpolate(t_cell *cell, float x, float y)
@@ -24,7 +20,8 @@ static float	interpolate(t_cell *cell, float x, float y)
 
 	float	inter_top = lerp(x, ul, ur);
 	float	inter_bottom = lerp(x, bl, br);
-	return (lerp(y, inter_top, inter_bottom));
+	float	noise = lerp(y, inter_top, inter_bottom);
+	return (increase_contrast(noise));
 }
 
 float	perlin_noise(float x, float y, short **grid)
