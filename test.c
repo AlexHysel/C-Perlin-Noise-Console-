@@ -15,9 +15,9 @@ int	main(int argc, char *args[])
 	short			**grid;
 	struct timespec delay;
 
-	if (args >= 3)
+	if (argc >= 3)
 		w = atoi(args[2]);
-	if (args >= 4)
+	if (argc >= 4)
 		h = atoi(args[3]);
 
 	srand(seed);
