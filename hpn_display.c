@@ -69,7 +69,7 @@ void	display_grid(short **grid)
 void	print_noise_char(float noise)
 {
 	static int	charset_len;
-	int	index;
+	int			index;
 
 	if (!charset_len)
 		charset_len = get_len(CHARSET);
@@ -82,15 +82,17 @@ void	print_noise_char(float noise)
 
 void	display_noise(float step, short **grid)
 {
-	int	width;
-	int	height;
+	int		width;
+	int		height;
+	float	ver_step;
 
 	width = get_2d_x(grid);
 	height = get_2d_y(grid);
+	ver_step = step * CHAR_RATIO;
 
 	print_header("= NOISE ", (width - 1) / step);
 	
-	for (float y = 0; y < height - 1; y += step * CHAR_RATIO)
+	for (float y = 0; y < height - 1; y += ver_step)
 	{
 		for (float x = 0; x < width - 1; x += step)
 			print_noise_char(perlin_noise(x, y, grid));

@@ -20,12 +20,12 @@ static float	interpolate(t_cell *cell, float x, float y)
 
 	float	inter_top = lerp(x, ul, ur);
 	float	inter_bottom = lerp(x, bl, br);
-	float	noise = lerp(y, inter_top, inter_bottom);
-	return (increase_contrast(noise));
+	return (lerp(y, inter_top, inter_bottom));
 }
 
 float	perlin_noise(float x, float y, short **grid)
 {
+	float	noise;
 	t_cell	*cell;
 	int		cell_x;
 	int		cell_y;
@@ -36,5 +36,8 @@ float	perlin_noise(float x, float y, short **grid)
 	y = y - cell_y;
 
 	cell = get_cell(cell_x, cell_y, grid);
-	return (interpolate(cell, x, y));
+
+	noise = interpolate(cell, x, y);
+	noise = increase_contrast(noise);
+	return (noise);
 }
